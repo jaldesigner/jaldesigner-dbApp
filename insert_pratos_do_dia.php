@@ -28,3 +28,5 @@ if($in_valor != ''){
 }else{
     echo 'Algo deu Errado!';
 }
+
+//$con->close();
