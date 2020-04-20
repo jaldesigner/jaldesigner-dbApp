@@ -2,11 +2,6 @@
 
 include 'dbconfig.php';
 
-$con = new mysqli($host,$hostUser, $hostPass, $db);
-
-if($con->connect_error){
-    die('Falha na conexão'. $con->connect_error);
-}
 $tabela = 'prato';
 $sql = "select * from $tabela";
 
