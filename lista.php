@@ -2,8 +2,12 @@
 
 include 'dbconfig.php';
 
-$tabela = 'prato';
-$sql = "select * from $tabela";
+$json = file_get_contents('php://input');
+$obj  = json_decode($json, true);
+
+$ID_APP = $obj['ID_APP'];
+
+$sql = "SELECT * FROM prato WHERE id_App = '$ID_APP'";
 
 $result = $con->query($sql);
 
@@ -12,8 +16,6 @@ if($result->num_rows > 0){
         $pratos = $row;
         $json = json_encode($pratos);
     }
-}else{
-    echo 'Não há Pratos cadastrados.';
 }
 
 echo $json;
