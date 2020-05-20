@@ -8,7 +8,7 @@ $obj = json_decode($json, true);
 $id_item = $obj['id_item'];
 $ID_APP = $obj['ID_APP'];
 
-$sql = "DELETE FROM opcao_prato_dia WHERE id_opcao='$id_item' && id_app='$ID_APP'";
+$sql = "DELETE FROM opcao_prato WHERE id_opcao_prato='$id_item' && id_App='$ID_APP'";
 
 if($id_item != ''){
     $con->query($sql)or die($con->error);
@@ -17,13 +17,14 @@ if($id_item != ''){
     $MSG[1] = '1';
 
     $json = json_encode($MSG);
-    echo $json;
+    //echo $json;
 }else{
     $MSG[0] = 'erro';
     $MSG[1] = '1';
 
     $json = json_encode($MSG);
-    echo $json;
+    //echo $json;
 }
 
+echo $json;
 $con->close();

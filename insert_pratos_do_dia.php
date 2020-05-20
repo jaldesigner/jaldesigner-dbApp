@@ -1,7 +1,7 @@
 <?php
 
 //include 'dbconfig.php';
-include './dbconfig.php';
+include 'dbconfig.php';
 
 
 //pega o Json recebido e o coloca na variável
@@ -16,17 +16,24 @@ $ID_APP = $obj['ID_APP'];
 $data = $obj['data'];
 $exibe = 1;
 
-if($in_valor != ''){
-    $con->query("UPDATE prato SET exibir='$exibe' WHERE id_App='$ID_APP' AND nome_prato='$in_valor'");
-    $con->query("INSERT INTO prato_do_dia (id_app, nome_prato_dia, data_prato_do_dia)VALUES('$ID_APP', '$in_valor', '$data')");
+$sql = "INSERT INTO prato_do_dia (id_app, nome_prato_dia, data_prato_do_dia)VALUES('$ID_APP', '$in_valor', '$data')";
 
-    $MSG[0] = 'gravado';
-    $MSG[1] = '1';
-    $json = json_encode($MSG);
-    //$json2 = json_encode($count);
-    echo $json;
-}else{
-    echo 'Algo deu Errado!';
+if ($in_valor != '') {
+    $con->query("UPDATE prato SET exibir='$exibe' WHERE id_App='$ID_APP' AND nome_prato='$in_valor'");
+
+    if ($con->query($sql)) {
+        $MSG[0] = 'gravado';
+        $MSG[1] = '1';
+        $json = json_encode($MSG);
+    }else{
+        $MSG[2] = $con->error;
+        $json = json_encode($MSG);
+    }
+
+
+
+    //echo $json;
 }
 
-//$con->close();
+echo $json;
+$con->close();

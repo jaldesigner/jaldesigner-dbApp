@@ -1,8 +1,6 @@
 <?php
-
 //include 'dbconfig.php';
 include './dbconfig.php';
-
 
 //pega o Json recebido e o coloca na variável
 $json = file_get_contents('php://input');

@@ -7,7 +7,7 @@ $obj  = json_decode($json, true);
 
 $ID_APP = $obj['ID_APP'];
 
-$sql = "SELECT * FROM prato WHERE id_App = '$ID_APP'";
+$sql = "SELECT * FROM prato WHERE id_App = '$ID_APP' ORDER BY nome_prato ASC";
 
 $result = $con->query($sql);
 
@@ -15,6 +15,8 @@ if($result->num_rows > 0){
     while($row[] = $result->fetch_assoc()){
         $pratos = $row;
         $json = json_encode($pratos);
+
+        //echo $json;
     }
 }
 

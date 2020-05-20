@@ -1,5 +1,5 @@
 <?php
-include_once('./df/dfile.php');
+//include_once('./df/dfile.php');
 date_default_timezone_set("Brazil/East");
 
 $host = 'localhost';    //Nome do host
